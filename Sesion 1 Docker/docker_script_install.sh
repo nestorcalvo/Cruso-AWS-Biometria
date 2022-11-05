@@ -12,11 +12,13 @@ if command -v apt-get >/dev/null; then
           "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
           $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
         sudo apt-get update
+	sudo apt-get install unzip
         yes | sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
         sudo docker run hello-world
 elif command -v yum >/dev/null; then
         sudo yum update -y
         yum install yum-utils
+	sudo yum install unzip
         yum clean all
 	sudo curl -L "https://github.com/docker/compose/releases/download/1.23.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 	sudo chmod +x /usr/local/bin/docker-compose
